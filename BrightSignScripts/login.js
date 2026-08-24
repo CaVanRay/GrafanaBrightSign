@@ -1,5 +1,21 @@
 (function () {
 
+	var loginComplete =
+        sessionStorage.getItem("grafanaAutoLoginComplete") === "true";
+
+    if (loginComplete) {
+
+        console.log(
+            "Grafana login already completed."
+        );
+
+        console.log(
+            "Skipping login process."
+        );
+
+        return;
+    }
+
     console.log("================================");
     console.log("GRAFANA AUTO LOGIN");
     console.log("================================");
@@ -37,7 +53,7 @@
     var maxLoginAttempts = 60;
 
 
-    function findLogin() {
+   function findLogin() {
 
     loginAttempts++;
 
@@ -146,6 +162,7 @@
                 console.log(
                     "ERROR: Login button not found."
                 );
+
             }
 
         }, 500);
@@ -157,16 +174,32 @@
 
     /*
      * ---------------------------------------------
-     * NEITHER LOGIN NOR PASSWORD CHANGE
+     * NOTHING FOUND YET
      * ---------------------------------------------
      *
-     * We're probably on the Grafana dashboard.
-     * Do NOT keep polling.
+     * Grafana may still be rendering.
+     *
+     * Keep trying for up to 30 seconds.
      */
 
-    console.log(
-        "Not a login page. Login script stopping."
-    );
+    if (loginAttempts < maxLoginAttempts) {
+
+        console.log(
+            "Grafana still loading - checking again..."
+        );
+
+        setTimeout(
+            findLogin,
+            500
+        );
+
+    } else {
+
+        console.log(
+            "Login fields never appeared. Stopping."
+        );
+
+    }
 
 }
 
@@ -317,6 +350,20 @@
 
                 submitButton.click();
 
+    			console.log(
+        			"Password submitted successfully."
+    			);
+
+    			sessionStorage.setItem(
+        			"grafanaAutoLoginComplete",
+        			"true"
+    			);
+
+    			console.log(
+        			"LOGIN SUCCESS FLAG SET."
+    			);
+
+
             } else {
 
                 console.log(
@@ -337,5 +384,5 @@
         findLogin,
         500
     );
-    
+
 })();
