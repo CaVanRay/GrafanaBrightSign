@@ -1,48 +1,79 @@
-
-function startDemoPlaylist() {
+(function () {
 
     console.log("================================");
-    console.log("STARTING DEMO PLAYLIST");
+    console.log("PLAYLIST TEST");
     console.log("================================");
 
-    var paragraphs = document.querySelectorAll("p");
+    function startDemoPlaylist() {
 
-    for (var i = 0; i < paragraphs.length; i++) {
+        console.log("Starting playlist test...");
 
-        var text = (paragraphs[i].innerText || "").trim();
+        var paragraphs = document.querySelectorAll("p");
 
-        if (text === "Dashboards") {
+        console.log(
+            "Found " + paragraphs.length + " <p> elements"
+        );
 
-            console.log("Found Dashboards");
+        for (var i = 0; i < paragraphs.length; i++) {
 
-            paragraphs[i].click();
+            var text =
+                (paragraphs[i].innerText || "").trim();
 
-            setTimeout(function () {
+            if (text === "Dashboards") {
 
-                var items = document.querySelectorAll("p");
+                console.log("Found Dashboards");
 
-                for (var j = 0; j < items.length; j++) {
+                paragraphs[i].click();
 
-                    var itemText =
-                        (items[j].innerText || "").trim();
+                setTimeout(function () {
 
-                    if (itemText === "Playlists") {
+                    var items =
+                        document.querySelectorAll("p");
 
-                        console.log("Found Playlists");
+                    console.log(
+                        "Searching for Playlists..."
+                    );
 
-                        items[j].click();
+                    for (var j = 0; j < items.length; j++) {
 
-                        return;
+                        var itemText =
+                            (items[j].innerText || "").trim();
+
+                        if (itemText === "Playlists") {
+
+                            console.log(
+                                "Found Playlists"
+                            );
+
+                            items[j].click();
+
+                            return;
+                        }
                     }
-                }
 
-                console.log("ERROR: Playlists not found.");
+                    console.log(
+                        "ERROR: Playlists not found."
+                    );
 
-            }, 500);
+                }, 1000);
 
-            return;
+                return;
+            }
         }
+
+        console.log(
+            "ERROR: Dashboards not found."
+        );
     }
 
-    console.log("ERROR: Dashboards not found.");
-}
+
+    /*
+     * Give Grafana time to finish rendering
+     * the dashboard before starting.
+     */
+    setTimeout(
+        startDemoPlaylist,
+        2000
+    );
+
+})();
