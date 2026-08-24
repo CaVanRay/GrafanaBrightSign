@@ -1,4 +1,4 @@
-(function () {
+function () {
 
     console.log("================================");
     console.log("GRAFANA AUTO LOGIN");
@@ -39,112 +39,87 @@
 
     function findLogin() {
 
-        loginAttempts++;
+    loginAttempts++;
 
-        var userField = document.querySelector(
-            'input[name="user"]'
-        );
+    var userField = document.querySelector(
+        'input[name="user"]'
+    );
 
-        var passField = document.querySelector(
-            'input[name="password"]'
-        );
+    var passField = document.querySelector(
+        'input[name="password"]'
+    );
 
+    var newPassword = document.querySelector(
+        'input[name="newPassword"]'
+    );
+
+    var confirmPassword = document.querySelector(
+        'input[name="confirmNew"]'
+    );
+
+
+    console.log(
+        "Login check " + loginAttempts +
+        " | login=" + !!userField +
+        " | passwordChange=" +
+        (!!newPassword && !!confirmPassword)
+    );
+
+
+    /*
+     * ---------------------------------------------
+     * PASSWORD CHANGE PAGE
+     * ---------------------------------------------
+     */
+
+    if (newPassword && confirmPassword) {
 
         console.log(
-            "Login attempt " + loginAttempts +
-            " | user=" + !!userField +
-            " | password=" + !!passField
+            "Password-change page detected."
+        );
+
+        handlePasswordChange();
+
+        return;
+    }
+
+
+    /*
+     * ---------------------------------------------
+     * LOGIN PAGE
+     * ---------------------------------------------
+     */
+
+    if (userField && passField) {
+
+        console.log(
+            "***** LOGIN FIELDS FOUND *****"
         );
 
 
-        /*
-         * Login page hasn't rendered yet.
-         */
-        if (!userField || !passField) {
-
-            /*
-             * Check whether we're already on the
-             * password-change page.
-             */
-            var newPassword = document.querySelector(
-                'input[name="newPassword"]'
-            );
-
-            var confirmPassword = document.querySelector(
-                'input[name="confirmNew"]'
-            );
-
-
-            if (newPassword && confirmPassword) {
-
-                console.log(
-                    "Password-change page detected."
-                );
-
-                handlePasswordChange();
-
-                return;
-            }
-
-
-            if (loginAttempts < maxLoginAttempts) {
-
-                setTimeout(findLogin, 500);
-
-            } else {
-
-                console.log(
-                    "ERROR: Login fields never appeared."
-                );
-
-            }
-
-            return;
-        }
-
-
-        console.log("***** LOGIN FIELDS FOUND *****");
-
-
-        /*
-         * Fill username.
-         */
         setReactInput(
             userField,
             "admin"
         );
 
 
-        /*
-         * Fill password.
-         */
         setReactInput(
             passField,
             "admin"
         );
 
 
-        console.log("Credentials inserted.");
-
         console.log(
-            "Username value:",
-            userField.value
-        );
-
-        console.log(
-            "Password length:",
-            passField.value.length
+            "Credentials inserted."
         );
 
 
-        /*
-         * Give React time to process the input.
-         */
         setTimeout(function () {
 
-            var loginButton = document.querySelector(
-                'button[type="submit"]'
-            );
+            var loginButton =
+                document.querySelector(
+                    'button[type="submit"]'
+                );
 
 
             if (loginButton) {
@@ -154,32 +129,46 @@
                     loginButton.innerText
                 );
 
-                console.log("Clicking Login...");
+                console.log(
+                    "Clicking Login..."
+                );
 
                 loginButton.click();
 
 
-                /*
-                 * Start watching for the
-                 * forced password change page.
-                 */
                 setTimeout(
                     checkPasswordChange,
                     1000
                 );
-
 
             } else {
 
                 console.log(
                     "ERROR: Login button not found."
                 );
-
             }
 
         }, 500);
 
+
+        return;
     }
+
+
+    /*
+     * ---------------------------------------------
+     * NEITHER LOGIN NOR PASSWORD CHANGE
+     * ---------------------------------------------
+     *
+     * We're probably on the Grafana dashboard.
+     * Do NOT keep polling.
+     */
+
+    console.log(
+        "Not a login page. Login script stopping."
+    );
+
+}
 
 
     /*
@@ -348,5 +337,4 @@
         findLogin,
         500
     );
-
-})();
+};
