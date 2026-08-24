@@ -1,4 +1,4 @@
-function () {
+(function () {
 
     console.log("================================");
     console.log("GRAFANA AUTO LOGIN");
@@ -337,4 +337,5 @@ function () {
         findLogin,
         500
     );
-};
+    
+})();
