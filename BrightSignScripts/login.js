@@ -12,12 +12,33 @@ playlist section and then start the demo playlist
 	function startPlaylist() {
 
 		// Prevent playlist.js from being loaded twice
-		if (window.playlistStarted) {
-			console.log("playlist.js already started.");
-			return;
-		}
-		
-	}
+    function startPlaylist() {
+
+        // Prevent playlist.js from being loaded twice
+        if (window.playlistStarted) {
+            console.log("playlist.js already started.");
+            return;
+        }
+
+        window.playlistStarted = true;
+
+        console.log("Loading playlist.js...");
+
+        var script = document.createElement("script");
+
+        script.src = "playlist.js";
+
+        script.onload = function () {
+            console.log("playlist.js loaded successfully.");
+        };
+
+        script.onerror = function () {
+            console.log("ERROR: Could not load playlist.js");
+            window.playlistStarted = false;
+        };
+
+        document.head.appendChild(script);
+    }
 	
 	var loginComplete =
         sessionStorage.getItem("grafanaAutoLoginComplete") === "true";
