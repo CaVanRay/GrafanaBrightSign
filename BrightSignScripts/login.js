@@ -1,5 +1,5 @@
 /****************************************************
-Date: 8/27/2026
+Date: 8/28/2026
 Title: playlist.js
 Author: Cavan Ray Theiss
 Description: after a successful login the playlist.js
