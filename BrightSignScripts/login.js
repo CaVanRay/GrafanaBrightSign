@@ -26,6 +26,8 @@ playlist section and then start the demo playlist
 			"Starting playlist.js"
 		);
 
+		startPlaylist();
+		
         return;
     }
 
