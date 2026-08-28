@@ -1,3 +1,12 @@
+/****************************************************
+Date: 8/27/2026
+Title: playlist.js
+Author: Cavan Ray Theiss
+Description: after a successful login the playlist.js
+script will navigate the dashboard menu to reach the
+playlist section and then start the demo playlist
+****************************************************/
+
 (function () {
 
 	var loginComplete =
