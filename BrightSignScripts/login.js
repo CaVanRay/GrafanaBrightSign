@@ -9,6 +9,10 @@ playlist section and then start the demo playlist
 
 (function () {
 
+	function startPlaylist() {
+		
+	}
+	
 	var loginComplete =
         sessionStorage.getItem("grafanaAutoLoginComplete") === "true";
 
