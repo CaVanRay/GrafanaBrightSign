@@ -13,6 +13,10 @@
             "Skipping login process."
         );
 
+		console.log(
+			"Starting playlist.js"
+		);
+
         return;
     }
 
