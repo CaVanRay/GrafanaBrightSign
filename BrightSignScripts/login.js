@@ -10,6 +10,12 @@ playlist section and then start the demo playlist
 (function () {
 
 	function startPlaylist() {
+
+		// Prevent playlist.js from being loaded twice
+		if (window.playlistStarted) {
+			console.log("playlist.js already started.");
+			return;
+		}
 		
 	}
 	
