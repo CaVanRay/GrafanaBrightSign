@@ -1,8 +1,6 @@
-Ok, making a middleware clone of the website wasn't working out too well, 
+as of now I can get past the login screen and the "select new password" screen.
 
-so I took a step back to work on a login script and that's showing some progress, just need to get past the new password request that
-keeps popping up
-
+working on playlist.js tomorrow
 
 Current state of process:
 
