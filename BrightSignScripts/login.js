@@ -11,15 +11,64 @@ be at playlist start page
 	var loginComplete =
         sessionStorage.getItem("grafanaAutoLoginComplete") === "true";
 
-    
-    function selectStart(){
-        const button = document.querySelector('css-1riaxdn');
-		if (button) {
-			button.click();
-		} else {
-			console.error('PLAYLIST START BUTTON NOT FOUND!!!!');
-		}
-    }
+/*
+* ----------------------------------------------------
+* START PLAYLIST
+* ----------------------------------------------------
+*/
+
+async function startDemoPlaylist() {
+  // 1. Click "Start playlist"
+  await waitForElement('span.css-1riaxdn', el => el.textContent.trim() === 'Start playlist');
+  document.querySelectorAll('span.css-1riaxdn')
+    [0] // Start playlist
+    .click();
+
+  // 2. Click the "Kiosk" radio button
+  await waitForElement('#_r_al_', el => true);
+  document.querySelector('#_r_al_').click();
+
+  // 3. Click the span with class css-tofe5u
+  await waitForElement('span.css-tofe5u', el => true);
+  document.querySelector('span.css-tofe5u').click();
+
+  // 4. Click "Start Demo Playlist"
+  await waitForElement('span.css-1riaxdn', el =>
+    el.textContent.trim() === 'Start Demo Playlist'
+  );
+
+  [...document.querySelectorAll('span.css-1riaxdn')]
+    .find(el => el.textContent.trim() === 'Start Demo Playlist')
+    .click();
+}
+
+// Wait until an element exists and optionally satisfies a condition
+function waitForElement(selector, condition, timeout = 10000) {
+  return new Promise((resolve, reject) => {
+    const start = Date.now();
+
+    const check = () => {
+      const elements = [...document.querySelectorAll(selector)];
+      const element = elements.find(condition);
+
+      if (element) {
+        resolve(element);
+        return;
+      }
+
+      if (Date.now() - start >= timeout) {
+        reject(new Error(`Timed out waiting for: ${selector}`));
+        return;
+      }
+
+      requestAnimationFrame(check);
+    };
+
+    check();
+  });
+}
+
+//*****************************************************
 
     if (loginComplete) {
 
@@ -31,7 +80,7 @@ be at playlist start page
             "Attempting to start playlist"
         );
 		
-		selectStart();
+		startDemoPlaylist();
 
         return;
     }
