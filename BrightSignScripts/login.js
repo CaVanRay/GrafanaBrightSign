@@ -8,39 +8,13 @@ be at playlist start page
 
 (function () {
 
-	function startPlaylist() {
-
-		// Prevent playlist.js from being loaded twice
-    function startPlaylist() {
-
-        // Prevent playlist.js from being loaded twice
-        if (window.playlistStarted) {
-            console.log("playlist.js already started.");
-            return;
-        }
-
-        window.playlistStarted = true;
-
-        console.log("Loading playlist.js...");
-
-        var script = document.createElement("script");
-
-        script.src = "playlist.js";
-
-        script.onload = function () {
-            console.log("playlist.js loaded successfully.");
-        };
-
-        script.onerror = function () {
-            console.log("ERROR: Could not load playlist.js");
-            window.playlistStarted = false;
-        };
-
-        document.head.appendChild(script);
-    }
-	
 	var loginComplete =
         sessionStorage.getItem("grafanaAutoLoginComplete") === "true";
+
+    
+    function selectStart(){
+        
+    }
 
     if (loginComplete) {
 
@@ -49,15 +23,9 @@ be at playlist start page
         );
 
         console.log(
-            "Skipping login process."
+            "Attempting to start playlist"
         );
 
-		console.log(
-			"Starting playlist.js"
-		);
-
-		startPlaylist();
-		
         return;
     }
 
