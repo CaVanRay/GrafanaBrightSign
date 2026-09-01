@@ -13,7 +13,7 @@ be at playlist start page
 
     
     function selectStart(){
-        const button = document.querySelector('');
+        const button = document.querySelector('css-1riaxdn');
 		if (button) {
 			button.click();
 		} else {
