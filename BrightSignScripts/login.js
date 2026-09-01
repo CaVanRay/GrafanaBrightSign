@@ -13,7 +13,12 @@ be at playlist start page
 
     
     function selectStart(){
-        
+        const button = document.querySelector('');
+		if (button) {
+			button.click();
+		} else {
+			console.error('PLAYLIST START BUTTON NOT FOUND!!!!');
+		}
     }
 
     if (loginComplete) {
@@ -25,6 +30,8 @@ be at playlist start page
         console.log(
             "Attempting to start playlist"
         );
+		
+		selectStart();
 
         return;
     }
