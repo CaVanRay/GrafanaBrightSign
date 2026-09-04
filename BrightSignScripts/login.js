@@ -8,7 +8,7 @@ be at playlist start page
 
 (function () {
 
-	var loginComplete =
+    var loginComplete =
         sessionStorage.getItem("grafanaAutoLoginComplete") === "true";
 
 /*
@@ -18,28 +18,54 @@ be at playlist start page
 */
 
 async function startDemoPlaylist() {
-  // 1. Click "Start playlist"
-  await waitForElement('span.css-1riaxdn', el => el.textContent.trim() === 'Start playlist');
-  document.querySelectorAll('span.css-1riaxdn')
-    [0] // Start playlist
-    .click();
 
-  // 2. Click the "Kiosk" radio button
-  await waitForElement('#_r_al_', el => true);
-  document.querySelector('#_r_al_').click();
+    console.log("PLAYLIST FUNCTION STARTED");
 
-  // 3. Click the span with class css-tofe5u
-  await waitForElement('span.css-tofe5u', el => true);
-  document.querySelector('span.css-tofe5u').click();
+    var startPlaylist = await waitForElement(
+        'span.css-1riaxdn',
+        function (el) {
+            return el.textContent.trim() === 'Start playlist';
+        }
+    );
 
-  // 4. Click "Start Demo Playlist"
-  await waitForElement('span.css-1riaxdn', el =>
-    el.textContent.trim() === 'Start Demo Playlist'
-  );
+    console.log("Found Start playlist");
+    startPlaylist.click();
 
-  [...document.querySelectorAll('span.css-1riaxdn')]
-    .find(el => el.textContent.trim() === 'Start Demo Playlist')
-    .click();
+
+    var kiosk = await waitForElement(
+        'input[type="radio"][title="Kiosk"]',
+        function () {
+            return true;
+        }
+    );
+
+    console.log("Found Kiosk");
+    kiosk.click();
+
+/*
+    var thirdButton = await waitForElement(
+        'span.css-tofe5u',
+        function () {
+            return true;
+        }
+    );
+
+    console.log("Found third element");
+    thirdButton.click();
+*/
+
+    var demoPlaylist = await waitForElement(
+        'button',
+        function (el) {
+            return el.textContent.trim() === 'Start Demo Playlist';
+        }
+    );
+
+    console.log("Found Start Demo Playlist");
+    demoPlaylist.click();
+
+    console.log("PLAYLIST FUNCTION COMPLETE");
+
 }
 
 // Wait until an element exists and optionally satisfies a condition
@@ -79,8 +105,8 @@ function waitForElement(selector, condition, timeout = 10000) {
         console.log(
             "Attempting to start playlist"
         );
-		
-		startDemoPlaylist();
+        
+        startDemoPlaylist();
 
         return;
     }
@@ -419,18 +445,18 @@ function waitForElement(selector, condition, timeout = 10000) {
 
                 submitButton.click();
 
-    			console.log(
-        			"Password submitted successfully."
-    			);
+                console.log(
+                    "Password submitted successfully."
+                );
 
-    			sessionStorage.setItem(
-        			"grafanaAutoLoginComplete",
-        			"true"
-    			);
+                sessionStorage.setItem(
+                    "grafanaAutoLoginComplete",
+                    "true"
+                );
 
-    			console.log(
-        			"LOGIN SUCCESS FLAG SET."
-    			);
+                console.log(
+                    "LOGIN SUCCESS FLAG SET."
+                );
 
 
             } else {
