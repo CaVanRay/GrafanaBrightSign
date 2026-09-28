@@ -1,35 +1,6 @@
-as of now I can get past the login screen and the "select new password" screen.
+# Grafana BrightSigns
+---
+## just some scripts for a work project.
 
-working on playlist.js tomorrow
-
-Current state of process:
-
-BrightSign loads Grafana
-        ↓
-login.js injected
-        ↓
-Check sessionStorage
-        ↓
-Not complete
-        ↓
-Wait for login fields
-        ↓
-admin / admin
-        ↓
-Log in
-        ↓
-Forced password change
-        ↓
-admin / admin
-        ↓
-Submit
-        ↓
-Set grafanaAutoLoginComplete = true
-        ↓
-Grafana dashboard
-        ↓
-login.js injected again
-        ↓
-Flag exists
-        ↓
-SKIP LOGIN
+I've already gotten my BrightSign units to log into Grafana and start a default playlist successfully.
+Now I just need to update my code to use different login credentials and select 2 different playlists.
