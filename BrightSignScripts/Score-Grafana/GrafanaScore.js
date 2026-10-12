@@ -18,6 +18,8 @@ Description:
     console.log("Current Grafana Page:", currentPath);
 
     var PLAYLIST_NAME = "Vulnerability Score";
+    var INPUT_USERNAME = "";
+    var INPUT_PASSWORD = "";
 
 /*****************************************************
 * START PLAYLIST
