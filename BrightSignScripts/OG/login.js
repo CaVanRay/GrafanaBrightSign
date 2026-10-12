@@ -11,6 +11,9 @@ be at playlist start page
     var loginComplete =
         sessionStorage.getItem("grafanaAutoLoginComplete") === "true";
 
+    var INPUT_USERNAME = "";    // PUT ACCOUNT USERNAME HERE;
+    var INPUT_PASSWORD = "";    // PUT ACCOUNT PASSWORD HERE;
+    
 /*
 * ----------------------------------------------------
 * START PLAYLIST
@@ -210,13 +213,13 @@ function waitForElement(selector, condition, timeout = 10000) {
 
         setReactInput(
             userField,
-            "admin"
+            INPUT_USERNAME
         );
 
 
         setReactInput(
             passField,
-            "admin"
+            INPUT_PASSWORD
         );
 
 
@@ -407,13 +410,13 @@ function waitForElement(selector, condition, timeout = 10000) {
 
         setReactInput(
             newPassword,
-            "admin"
+            INPUT_PASSWORD
         );
 
 
         setReactInput(
             confirmPassword,
-            "admin"
+            INPUT_PASSWORD
         );
 
 
