@@ -252,12 +252,12 @@ function waitForElement(selector, condition, timeout = 10000) {
 
         setReactInput(
             userField,
-            "vulnerability-display"
+            INPUT_USERNAME
         );
 
         setReactInput(
             passField,
-            "fu&rXug9xf"
+            INPUT_PASSWORD
         );
 
         console.log(
@@ -440,13 +440,13 @@ function waitForElement(selector, condition, timeout = 10000) {
 
         setReactInput(
             newPassword,
-            "fu&rXug9xf"
+            INPUT_PASSWORD
         );
 
 
         setReactInput(
             confirmPassword,
-            "fu&rXug9xf"
+            INPUT_PASSWORD
         );
 
 
