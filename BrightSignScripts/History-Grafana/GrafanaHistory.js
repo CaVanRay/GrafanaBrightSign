@@ -122,23 +122,6 @@ function waitForElement(selector, condition, timeout = 10000) {
 
 //*****************************************************
 
-    /*
-    if (loginComplete) {
-
-        console.log(
-            "Grafana login already completed."
-        );
-
-        console.log(
-            "Attempting to start playlist"
-        );
-        
-        startHistoryPlaylist();
-
-        return;
-    }
-    */
-
     if (window.location.pathname === "/playlists") {
 
         console.log("Playlist page detected.");
@@ -252,12 +235,12 @@ function waitForElement(selector, condition, timeout = 10000) {
 
         setReactInput(
             userField,
-            "vulnerability-display"
+            INPUT_USERNAME;
         );
 
         setReactInput(
             passField,
-            "fu&rXug9xf"
+            INPUT_PASSWORD
         );
 
         console.log(
@@ -440,13 +423,13 @@ function waitForElement(selector, condition, timeout = 10000) {
 
         setReactInput(
             newPassword,
-            "fu&rXug9xf"
+            INPUT_PASSWORD
         );
 
 
         setReactInput(
             confirmPassword,
-            "fu&rXug9xf"
+            INPUT_PASSWORD
         );
 
 
